@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: local
+app:
+  client:
+    id: ${CLIENT_ID:e5486ef4-738c-44b3-af02-7ae6f56cae44}
+    secret: ${CLIENT_SECRET:PPR8Q~.vfxwl5vDW1XgjitFUKS5ZUWN_5T1cTbPG}
+
+server:
+  port: 8081

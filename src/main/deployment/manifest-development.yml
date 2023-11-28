@@ -1,0 +1,21 @@
+---
+applications:
+  - name: soup-email-api-development
+    routes:
+      - route: soup-email-api-development.us-east-1.np.paas.lmig.com
+    buildpacks:
+      - java_current  # final buildpack will determine app start command
+    instances: 1
+    memory: 1024M
+    timeout: 180
+    env: 
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 17.+}}'
+      MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED: true
+      MANAGEMENT_ENDPOINTS_WEB_BASE-PATH: /
+      SPRING_PROFILES_ACTIVE: development
+      CLIENT_ID: ${secret.chat.id}
+      CLIENT_SECRET: ${secret.chat.secret}
+    health-check-type: http
+    health-check-http-endpoint: /health/liveness
+    blue-green:
+      health-check-endpoint: /health
